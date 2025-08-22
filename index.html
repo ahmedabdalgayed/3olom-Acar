@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>من نحن - مجتمع علوم عقارية</title>
+    <title>الرئيسية - مجتمع علوم عقارية</title>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -14,11 +14,149 @@
             font-family: 'Rubik', sans-serif;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             background-color: #fcf3e4;
             color: #09404e;
             line-height: 1.8;
         }
+
+        /* naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaav */
+        .navbar {
+            position: fixed;
+            /* ثابت */
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1100;
+            width: 100%;
+            background: #0d6efd;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 25px;
+        }
+
+        .brand {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color .3s;
+        }
+
+        .nav-links a:hover {
+            color: #d1d1d1;
+        }
+
+        /* زر المزيد */
+        .more-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #fff;
+            color: #0d6efd;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .more-btn:hover {
+            background: #f1f1f1;
+        }
+
+        .menu-icon {
+            font-size: 20px;
+        }
+
+        /* السايدبار يطلع من الشمال */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -260px;
+            /* ← بدل right */
+            width: 250px;
+            height: 100%;
+            background: #0d6efd;
+            color: #fff;
+            padding: 20px;
+            transition: left .4s ease;
+            /* ← بدل right */
+            z-index: 1200;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, .2);
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        /* ← بدل right:0 */
+        .sidebar h3 {
+            margin-bottom: 20px;
+        }
+
+        .sidebar a {
+            display: block;
+            margin: 12px 0;
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color .3s;
+        }
+
+        .sidebar a:hover {
+            color: #d1d1d1;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 22px;
+            cursor: pointer;
+            margin-bottom: 20px
+        }
+
+        /* Overlay لتعتيم الخلفية وإلتقاط الضغطات */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .35);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s ease;
+            z-index: 1150;
+        }
+
+        .overlay.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* رسبونسف */
+        @media (max-width: 768px) {
+            .nav-links a {
+                display: none;
+            }
+        }
+
+        /* naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaav */
 
         header {
             background: url('https://images.unsplash.com/photo-1582407947304-fd86f028f716?q=80&w=1296&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover no-repeat;
@@ -164,6 +302,36 @@
 </head>
 
 <body>
+    <nav class="navbar">
+        <div class="brand">عُلوم عقارية</div>
+        <div class="nav-links">
+            <a href="#">الرئيسية</a>
+            <a target="_blank" href="/padges/family.html">أهل عُلوم عقارية</a>
+            <a target="_blank" href="/padges/commuinty.html">مجتمعنا</a>
+            <a target="_blank" href="#">عروضنا</a>
+            <div id="moreBtn" class="more-btn">
+                اضغط للمزيد <span class="menu-icon">☰</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- سايد بار (من الشمال) -->
+    <aside class="sidebar" id="sidebar">
+        <button class="close-btn" id="closeSidebarBtn">×</button>
+        <h3>القائمة</h3>
+        <a href="#">الرئيسية</a>
+        <a target="_blank" href="/padges/family.html">أهل عُلوم عقارية</a>
+        <a target="_blank" href="/padges/commuinty.html">مجتمعنا</a>
+        <a target="_blank" href="#">عروضنا</a>
+        <a target="_blank" href="#">شراكاتنا</a>
+        <a target="_blank" href="#">فرص العمل</a>
+        <a target="_blank" href="#">السياسات والخصوصية</a>
+        <a target="_blank" href="#">المتجر</a>
+    </aside>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
     <header>
         <h1 class="fade-in">مجتمع عُلوم عقارية</h1>
         <p class="fade-in">مجتمع عقاري تفاعلي يجمع الفئات العقارية لتبادل المعرفة والخبرات، وحل المشكلات، واستثمار
@@ -245,15 +413,59 @@
 
     <footer>
         <p>
-            <a href="#">تواصل معنا</a> |
-            <a href="#">سياسة الخصوصية</a> |
-            <a href="#">الشروط والأحكام</a>
+        <h3>روابط هامة :</h3>
+        <a href="#">الرئيسية</a>|
+        <a target="_blank" href="#">أهل عُلوم عقارية</a>|
+        <a target="_blank" href="#">مجتمعنا</a>|
+        <a target="_blank" href="#">عروضنا</a>|
+        <a target="_blank" href="#">شراكاتنا</a>|
+        <a target="_blank" href="#">فرص العمل</a>|
+        <a target="_blank" href="#">السياسات والخصوصية</a>|
+        <a target="_blank" href="#">المتجر</a>
         </p>
         <p>© 2025 مجتمع علوم عقارية - جميع الحقوق محفوظة</p>
-        <p>Developed by<a href="https://ahmedabdalgayed.github.io/">Ahmed Abdalgayed</a></p>
+        <p>Developed by<a target="_blank" href="https://ahmedabdalgayed.github.io/">Ahmed Abdalgayed</a></p>
     </footer>
 
     <script>
+        // navvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        const moreBtn = document.getElementById('moreBtn');
+        const closeBtn = document.getElementById('closeSidebarBtn');
+
+        function openSidebar() {
+            sidebar.classList.add('active');
+            overlay.classList.add('show');
+        }
+        function closeSidebar() {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('show');
+        }
+        function toggleSidebar() {
+            sidebar.classList.contains('active') ? closeSidebar() : openSidebar();
+        }
+
+        // فتح وإغلاق
+        moreBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleSidebar(); });
+        closeBtn.addEventListener('click', (e) => { e.stopPropagation(); closeSidebar(); });
+
+        // إغلاق عند الضغط على أي مكان في الشاشة
+        overlay.addEventListener('click', closeSidebar);
+        document.addEventListener('click', (e) => {
+            if (sidebar.classList.contains('active')
+                && !sidebar.contains(e.target)
+                && e.target !== moreBtn
+                && !moreBtn.contains(e.target)) {
+                closeSidebar();
+            }
+        });
+        // منع الإغلاق أثناء الضغط داخل السايدبار
+        sidebar.addEventListener('click', (e) => e.stopPropagation());
+        // إغلاق بـ Escape
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSidebar(); });
+        // navvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
         const faders = document.querySelectorAll('.fade-in');
         const appearOptions = {
             threshold: 0.2,
