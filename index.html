@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>من نحن - مجتمع علوم عقارية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Rubik', sans-serif;
+        }
+
+        body {
+            background-color: #fcf3e4;
+            color: #09404e;
+            line-height: 1.8;
+        }
+
+        header {
+            background: url('https://images.unsplash.com/photo-1582407947304-fd86f028f716?q=80&w=1296&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover no-repeat;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+
+        header a {
+            background-color: #e4b467;
+            color: #09404e;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        header a:hover {
+            background-color: #d29c50;
+        }
+
+        section {
+            padding: 60px 20px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        h2 {
+            text-align: center;
+            color: #09404e;
+            margin-bottom: 40px;
+        }
+
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .benefit {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .benefit:hover {
+            transform: translateY(-5px);
+        }
+
+        .events,
+        .offers,
+        .partners {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            width: 300px;
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        .partners img {
+            width: 120px;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: 0.3s;
+        }
+
+        .partners img:hover {
+            filter: none;
+            opacity: 1;
+        }
+
+        footer {
+            background-color: #09404e;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        footer a {
+            color: #e4b467;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media(max-width: 600px) {
+            header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 class="fade-in">مجتمع عُلوم عقارية</h1>
+        <p class="fade-in">مجتمع عقاري تفاعلي يجمع الفئات العقارية لتبادل المعرفة والخبرات، وحل المشكلات، واستثمار
+            الفرص.</p>
+        <a href="#membership" class="fade-in">اشترك الآن في عضوية المجتمع</a>
+    </header>
+
+    <section id="membership">
+        <h2 class="fade-in">انضم إلينا اليوم</h2>
+        <p class="fade-in" style="text-align:center; max-width:700px; margin:auto;">من خلال عضويتك، ستتمكن من الوصول إلى
+            شبكة واسعة من الخبراء والمستثمرين والمهنيين في مجال العقارات، مع فرص حصرية للنمو والتطوير.</p>
+        <div style="text-align:center; margin-top:20px;">
+            <a href="#"
+                style="background:#e4b467; color:#09404e; padding:12px 30px; border-radius:25px; font-weight:bold; text-decoration:none;">ابدأ
+                الآن</a>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="fade-in">ماذا تستفيد من العضوية؟</h2>
+        <div class="benefits">
+            <div class="benefit fade-in">الوصول إلى الفعاليات الخاصة</div>
+            <div class="benefit fade-in">الحصول على عروض حصرية</div>
+            <div class="benefit fade-in">التواصل مع خبراء القطاع</div>
+            <div class="benefit fade-in">فرص شراكات وعمل</div>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="fade-in">آخر الفعاليات</h2>
+        <div class="events">
+            <div class="card fade-in">
+                <img src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=800&q=80"
+                    alt="">
+                <div class="card-body">فعالية عقارية 2025</div>
+            </div>
+            <div class="card fade-in">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
+                    alt="">
+                <div class="card-body">ملتقى الاستثمار العقاري</div>
+            </div>
+        </div>
+        <div style="text-align:center; margin-top:20px;">
+            <a href="#"
+                style="background:#e4b467; color:#09404e; padding:12px 30px; border-radius:25px; font-weight:bold; text-decoration:none;">شاهد
+                جميع الفعاليات</a>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="fade-in">العروض الخاصة</h2>
+        <div class="offers">
+            <div class="card fade-in">
+                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80"
+                    alt="">
+                <div class="card-body">خصم 20% على العقارات السكنية</div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="fade-in">شركاؤنا</h2>
+        <div class="partners">
+            <img class="fade-in" src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg" alt="">
+            <img class="fade-in" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="">
+        </div>
+    </section>
+
+    <section>
+        <h2 class="fade-in">انضم لفريق العمل</h2>
+        <p class="fade-in" style="text-align:center; max-width:700px; margin:auto;">إذا كنت محترفًا في مجالك وتريد أن
+            تكون جزءًا من فريقنا، نحن نرحب بك.</p>
+        <div style="text-align:center; margin-top:20px;">
+            <a href="#"
+                style="background:#e4b467; color:#09404e; padding:12px 30px; border-radius:25px; font-weight:bold; text-decoration:none;">قدّم
+                طلبك</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>
+            <a href="#">تواصل معنا</a> |
+            <a href="#">سياسة الخصوصية</a> |
+            <a href="#">الشروط والأحكام</a>
+        </p>
+        <p>© 2025 مجتمع علوم عقارية - جميع الحقوق محفوظة</p>
+        <p>Developed by<a href="https://ahmedabdalgayed.github.io/">Ahmed Abdalgayed</a></p>
+    </footer>
+
+    <script>
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = {
+            threshold: 0.2,
+            rootMargin: "0px 0px -50px 0px"
+        };
+        const appearOnScroll = new IntersectionObserver(function (entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            });
+        }, appearOptions);
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+    </script>
+</body>
+
+</html>
