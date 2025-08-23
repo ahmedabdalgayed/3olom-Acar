@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أهل علوم عقارية</title>
+    <!-- خط Rubik -->
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Rubik', sans-serif;
+            background-color: #fcf3e4;
+            color: #09404e;
+            line-height: 1.6;
+        }
+
+        /* naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaav */
+        .navbar {
+            position: fixed;
+            /* ثابت */
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1100;
+            width: 100%;
+            background: #0d6efd;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 25px;
+        }
+
+        .brand {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color .3s;
+        }
+
+        .nav-links a:hover {
+            color: #d1d1d1;
+        }
+
+        /* زر المزيد */
+        .more-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #fff;
+            color: #0d6efd;
+            padding: 6px 12px;
+            margin-left: 40px;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-inline-start: 10px;
+            /* يبعد الزر شوية عن الحافة */
+
+        }
+
+        .more-btn:hover {
+            background: #f1f1f1;
+        }
+
+        .menu-icon {
+            font-size: 20px;
+        }
+
+        /* السايدبار يطلع من الشمال */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translateX(-100%);
+            /* ← بدل right */
+            width: 250px;
+            height: 100%;
+            background: #0d6efd;
+            color: #fff;
+            padding: 20px;
+            transition: left .4s ease;
+            /* ← بدل right */
+            z-index: 1200;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, .2);
+            padding-left: 30px;
+        }
+
+        .sidebar.active {
+            transform: translateX(0);
+        }
+
+        /* ← بدل right:0 */
+        .sidebar h3 {
+            margin-bottom: 20px;
+        }
+
+        .sidebar a {
+            display: block;
+            margin: 12px 0;
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color .3s;
+        }
+
+        .sidebar a:hover {
+            color: #d1d1d1;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 22px;
+            cursor: pointer;
+            margin-bottom: 20px
+        }
+
+        /* Overlay لتعتيم الخلفية وإلتقاط الضغطات */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .35);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s ease;
+            z-index: 1150;
+        }
+
+        .overlay.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* رسبونسف */
+        @media (max-width: 768px) {
+            .nav-links a {
+                display: none;
+            }
+        }
+
+        /* naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaav */
+
+        header {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #0052D4, #4364F7, #6FB1FC);
+            color: #fff;
+            animation: fadeIn 1.5s ease;
+        }
+
+        header img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            margin-bottom: 15px;
+            object-fit: cover;
+        }
+
+        header h1 {
+            margin: 10px 0;
+            font-size: 28px;
+        }
+
+        header p {
+            max-width: 600px;
+            margin: 0 auto 20px;
+            font-size: 18px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #ff5722;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #e64a19;
+            transform: translateY(-2px);
+        }
+
+        section {
+            padding: 60px 20px;
+            text-align: center;
+            animation: slideUp 1s ease;
+        }
+
+        section h2 {
+            font-size: 24px;
+            margin-bottom: 40px;
+            color: #0052D4;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .card img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            margin: 10px 0 5px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .card p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* نموذج */
+        form {
+            max-width: 500px;
+            margin: auto;
+            text-align: right;
+        }
+
+        form input,
+        form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-family: 'Rubik', sans-serif;
+        }
+
+        form button {
+            background: #0052D4;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        footer {
+            background-color: #09404e;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        footer a {
+            color: #e4b467;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="brand">عُلوم عقارية</div>
+        <div class="nav-links">
+            <a target="_blank" href="index.html">الرئيسية</a>
+            <a target="_blank" href="family.html">أهل عُلوم عقارية</a>
+            <a target="_blank" href="commuinty.html">مجتمعنا</a>
+            <a target="_blank" href="#">عروضنا</a>
+            <div id="moreBtn" class="more-btn">
+                اضغط للمزيد <span class="menu-icon">☰</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- سايد بار (من الشمال) -->
+    <aside class="sidebar" id="sidebar">
+        <button class="close-btn" id="closeSidebarBtn">×</button>
+        <h3>القائمة</h3>
+        <a target="_blank" href="index.html">الرئيسية</a>
+        <a target="_blank" href="family.html">أهل عُلوم عقارية</a>
+        <a target="_blank" href="commuinty.html">مجتمعنا</a>
+        <a target="_blank" href="#">عروضنا</a>
+        <a target="_blank" href="#">شراكاتنا</a>
+        <a target="_blank" href="#">فرص العمل</a>
+        <a target="_blank" href="#">السياسات والخصوصية</a>
+        <a target="_blank" href="#">المتجر</a>
+    </aside>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- قسم الإدارة -->
+    <header>
+        <img src="../imges/2.jpg" alt="صورة المدير">
+        <h1>أ. عبد الله الربيش</h1>
+        <p>العقار مش مجرد مبنى أو جدران وأسقف، هو استثمار في المستقبل وأمان للأجيال. رؤيتنا واضحة: إننا نقدّم حلول
+            عقارية مبتكرة،
+            تجمع بين الجودة والاستدامة، وتفتح أبواب جديدة للفرص. هدفنا مش بس البيع والشراء، لكن إننا نبني ثقة حقيقية
+            ونصنع قيمة
+            تدوم.</p>
+        <a href="https://calendar.google.com" target="_blank" class="btn">📅 حجز موعد</a>
+    </header>
+
+    <!-- فريق العمل -->
+    <section>
+        <h2>فريق العمل</h2>
+        <div class="grid">
+            <div class="card">
+                <img src="../imges/1.jpg" alt="عضو">
+                <h3>محمد علي</h3>
+                <p>مسؤول التسويق</p>
+            </div>
+            <div class="card">
+                <img src="../imges/9.jpg" alt="عضو">
+                <h3>سارة حسن</h3>
+                <p>مديرة المشاريع</p>
+            </div>
+            <div class="card">
+                <img src="../imges/1.jpg" alt="عضو">
+                <h3>إبراهيم ناجي</h3>
+                <p>خبير عقاري</p>
+            </div>
+            <div class="card">
+                <img src="../imges/5.png" alt="عضو">
+                <h3>فارس محمد</h3>
+                <p>خبير تفاوض</p>
+            </div>
+            <div class="card">
+                <img src="../imges/2.jpg" alt="عضو">
+                <h3>وائل عبدالحميد</h3>
+                <p>خبير تفاوض</p>
+            </div>
+            <div class="card">
+                <img src="../imges/5.png" alt="عضو">
+                <h3>احمد ناصر</h3>
+                <p>أستشاري عقاري</p>
+            </div>
+            <div class="card">
+                <img src="../imges/2.jpg" alt="عضو">
+                <h3>فؤاد العامري</h3>
+                <p>مسؤول قانوني</p>
+            </div>
+            <div class="card">
+                <img src="../imges/1.jpg" alt="عضو">
+                <h3>إياد محمد</h3>
+                <p>عقاري مخضرم</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- أبرز العضويات -->
+    <section>
+        <h2>أبرز العضويات</h2>
+        <div class="grid">
+            <div class="card">
+                <img src="../imges/OIP.png" alt="عضوية">
+                <h3>جمعية المطورين العقاريين</h3>
+                <p>عضوية فخرية منذ 2020</p>
+            </div>
+            <div class="card">
+                <img src="../imges/السعيدان-1.jpg" alt="عضوية">
+                <h3>شركة أل سعيدان للعقارات</h3>
+                <p>عضوية مثمره منذ 2018</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- الإسهامات السابقة -->
+    <section>
+        <h2>الإسهامات السابقة</h2>
+        <div class="grid">
+            <div class="card">
+                <img src="../imges/eleskan.png" alt="مساهمة">
+                <h3>مشروع الإسكان التنموي</h3>
+                <a href="https://example.com" target="_blank" class="btn">المزيد</a>
+            </div>
+        </div>
+        <div style="margin-top: 20px;" class="grid">
+            <div class="card">
+                <img src="../imges/fasel.png" alt="مساهمة">
+                <h3>إسكان جامعة الملك فيصل الدولية</h3>
+                <a href="https://example.com" target="_blank" class="btn">المزيد</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- أصدقاء علوم عقارية -->
+    <section>
+        <h2>أصدقاء علوم عقارية</h2>
+        <div class="grid">
+            <div class="card">
+                <img src="../imges/89210.jpg" alt="صديق">
+                <h3>شركة السعودية للتنمية</h3>
+                <a href="https://example.com" target="_blank" class="btn">زيارة</a>
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <img src="../imges/elsahra.png" alt="صديق">
+                    <h3>شركة الزهراء للتنمية</h3>
+                    <a href="https://example.com" target="_blank" class="btn">زيارة</a>
+                </div>
+            </div>
+    </section>
+
+    <!-- مكانك بيننا -->
+    <section>
+        <h2>مكانك بيننا.. بانتظارك</h2>
+        <form id="joinForm">
+            <input type="text" name="name" placeholder="الاسم الكامل" required>
+            <input type="email" name="email" placeholder="البريد الإلكتروني" required>
+            <input type="text" name="phone" placeholder="رقم التواصل">
+            <textarea name="message" rows="4" placeholder="رسالتك"></textarea>
+            <button type="submit">إرسال</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>
+        <h3>روابط هامة :</h3>
+        <a href="#">الرئيسية</a>|
+        <a target="_blank" href="#">أهل عُلوم عقارية</a>|
+        <a target="_blank" href="#">مجتمعنا</a>|
+        <a target="_blank" href="#">عروضنا</a>|
+        <a target="_blank" href="#">شراكاتنا</a>|
+        <a target="_blank" href="#">فرص العمل</a>|
+        <a target="_blank" href="#">السياسات والخصوصية</a>|
+        <a target="_blank" href="#">المتجر</a>
+        </p>
+        <p>© 2025 مجتمع علوم عقارية - جميع الحقوق محفوظة</p>
+        <p>Developed by<a target="_blank" href="https://ahmedabdalgayed.github.io/">Ahmed Abdalgayed</a></p>
+    </footer>
+
+    <script>
+        // navvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        const moreBtn = document.getElementById('moreBtn');
+        const closeBtn = document.getElementById('closeSidebarBtn');
+
+        function openSidebar() {
+            sidebar.classList.add('active');
+            overlay.classList.add('show');
+        }
+        function closeSidebar() {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('show');
+        }
+        function toggleSidebar() {
+            sidebar.classList.contains('active') ? closeSidebar() : openSidebar();
+        }
+
+        // فتح وإغلاق
+        moreBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleSidebar(); });
+        closeBtn.addEventListener('click', (e) => { e.stopPropagation(); closeSidebar(); });
+
+        // إغلاق عند الضغط على أي مكان في الشاشة
+        overlay.addEventListener('click', closeSidebar);
+        document.addEventListener('click', (e) => {
+            if (sidebar.classList.contains('active')
+                && !sidebar.contains(e.target)
+                && e.target !== moreBtn
+                && !moreBtn.contains(e.target)) {
+                closeSidebar();
+            }
+        });
+
+        // منع الإغلاق أثناء الضغط داخل السايدبار
+        sidebar.addEventListener('click', (e) => e.stopPropagation());
+
+        // إغلاق بـ Escape
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSidebar(); });
+        // navvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+
+        // أنيميشن عند التمرير
+        const sections = document.querySelectorAll("section");
+        window.addEventListener("scroll", () => {
+            sections.forEach(sec => {
+                const rect = sec.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    sec.style.opacity = "1";
+                    sec.style.transform = "translateY(0)";
+                }
+            });
+        });
+
+        // فورم "مكانك بيننا"
+        document.getElementById("joinForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            alert("✅ تم إرسال بياناتك بنجاح! شكرًا لانضمامك إلى علوم عقارية.");
+            this.reset();
+        });
+    </script>
+
+</body>
+
+</html>
