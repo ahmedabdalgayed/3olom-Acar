@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الشركاء</title>
+    <title>فرص العمل</title>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -12,7 +12,7 @@
             font-family: 'Rubik', sans-serif;
             background: #f7f9fc;
             color: #333;
-            line-height: 1.6;
+            line-height: 1.8;
         }
 
         /* naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaav */
@@ -100,6 +100,7 @@
 
         .sidebar.active {
             transform: translateX(0);
+
         }
 
         /* ← بدل right:0 */
@@ -156,7 +157,7 @@
 
         header {
             text-align: center;
-            padding: 100px 20px;
+            padding: 120px 20px;
             background: linear-gradient(135deg, #0052D4, #4364F7, #6FB1FC);
             color: #fff;
             animation: fadeIn 1.5s ease;
@@ -164,118 +165,97 @@
 
         header h1 {
             font-size: 32px;
-            margin-bottom: 10px;
-        }
-
-        header h3 {
-            font-size: 20px;
             margin: 0;
-            opacity: 0.9;
         }
 
         section {
             padding: 60px 20px;
-            text-align: center;
+            max-width: 900px;
+            margin: auto;
         }
 
         section h2 {
-            font-size: 26px;
-            margin-bottom: 30px;
+            font-size: 24px;
+            margin-bottom: 25px;
             color: #0052D4;
+            text-align: center;
         }
 
-        /* ملاحظات */
-        .note {
-            background: #fff3cd;
-            color: #856404;
-            border: 1px solid #ffeeba;
-            border-radius: 10px;
-            padding: 20px;
-            max-width: 700px;
-            margin: 0 auto 40px;
-            font-size: 16px;
-            font-weight: 600;
-            animation: slideInLeft 1s ease;
-        }
-
-        /* الشركات */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-        }
-
-        .card {
-            background: linear-gradient(135deg, #ffffff, #f0f4ff);
-            border-radius: 16px;
+        /* كارد الفرص */
+        .job-card {
+            background: #fff;
+            border-radius: 14px;
             box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-            padding: 20px 25px 70px;
-            /* مساحة للزر */
-            position: relative;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            padding: 25px 20px;
+            margin-bottom: 40px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             opacity: 0;
-            transform: scale(0.9);
-            margin-right: 15px;
+            transform: translateY(30px);
         }
 
-        .card.visible {
+        .job-card.visible {
             opacity: 1;
-            transform: scale(1);
+            transform: translateY(0);
         }
 
-        .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .card img {
-            max-width: 100px;
+        .job-card h3 {
             margin-bottom: 15px;
-            border-radius: 10px;
-        }
-
-        .card h3 {
-            margin: 10px 0 5px;
             font-size: 20px;
             color: #333;
         }
 
-        .card p {
+        .job-details {
+            text-align: right;
             font-size: 15px;
             color: #555;
-            margin: 8px 0;
         }
 
-        .discount-box {
-            background: #e3f2fd;
-            border: 1px dashed #0052D4;
-            border-radius: 8px;
-            padding: 8px 12px;
+        .job-details p {
+            margin: 6px 0;
+        }
+
+        /* الفورم */
+        form {
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+            padding: 30px 20px;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 6px;
             font-weight: 600;
-            color: #0052D4;
-            margin: 12px auto;
-            display: inline-block;
+            color: #333;
+            text-align: right;
         }
 
-        .card a {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 94%;
-            text-align: center;
+        form input,
+        form textarea {
+            width: 96%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-family: 'Rubik', sans-serif;
+            font-size: 15px;
+        }
+
+        form button {
             background: #0052D4;
             color: #fff;
-            text-decoration: none;
-            padding: 14px;
-            border-bottom-left-radius: 16px;
-            border-bottom-right-radius: 16px;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
             transition: 0.3s;
+            width: 100%;
         }
 
-        .card a:hover {
+        form button:hover {
             background: #003a9c;
         }
-
 
         footer {
             background-color: #09404e;
@@ -303,30 +283,16 @@
                 opacity: 1;
             }
         }
-
-        @keyframes slideInLeft {
-            from {
-                transform: translateX(-40px);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
     </style>
 </head>
 
 <body>
-
-
     <nav class="navbar">
         <div class="brand">عُلوم عقارية</div>
         <div class="nav-links">
             <a target="_blank" href="index.html">الرئيسية</a>
             <a target="_blank" href="/padges/family.html">أهل عُلوم عقارية</a>
-            <a target="_blank" href="/padges/commuinty.html">مجتمعنا</a>
+            <a href="/padges/commuinty.html">مجتمعنا</a>
             <a target="_blank" href="3orod.html">عروضنا</a>
             <div id="moreBtn" class="more-btn">
                 اضغط للمزيد <span class="menu-icon">☰</span>
@@ -342,8 +308,8 @@
         <a target="_blank" href="family.html">أهل عُلوم عقارية</a>
         <a target="_blank" href="commuinty.html">مجتمعنا</a>
         <a target="_blank" href="3orod.html">عروضنا</a>
-        <a href="SharQatna.html">شراكاتنا</a>
-        <a target="_blank" href="forasAmal.html">فرص العمل</a>
+        <a target="_blank" href="SharQatna.html">شراكاتنا</a>
+        <a href="forasAmal.html">فرص العمل</a>
         <a target="_blank" href="#">المتجر</a>
         <a target="_blank" href="seyasat.html">السياسات والخصوصية</a>
     </aside>
@@ -353,45 +319,46 @@
 
     <!-- الهيدر -->
     <header>
-        <h1>الشركاء</h1>
-        <h3>في القطاع العقاري</h3>
+        <h1>هل أنت الحل؟</h1>
     </header>
 
-    <!-- الملاحظات -->
+    <!-- الفرص الحالية -->
     <section>
-        <div class="note">
-            ⚠️ العروض حصرية لأعضاء المجتمع فقط
+        <h2>الفرص الحالية</h2>
+        <div class="job-card">
+            <h3>مسؤول متابعة نشاط مجتمع Whatsapp</h3>
+            <div class="job-details">
+                <p><strong>العدد المتاح:</strong> 2</p>
+                <p><strong>المدينة المتاحة:</strong> الدمام</p>
+                <p><strong>طبيعة العمل:</strong> عن بُعد</p>
+            </div>
         </div>
     </section>
 
-    <!-- الشركات -->
+    <!-- تعبئة بيانات الطلب -->
     <section>
-        <h2>شركاؤنا المميزون</h2>
-        <div class="grid">
-            <div class="card">
-                <img src="imges/الاساليب العمرانيه .png" alt="شركة 1">
-                <h3>شركة الاستثمار العقاري</h3>
-                <p>خصم حتى 25%</p>
-                <div class="discount-box">CODE25</div>
-                <a href="https://example.com" target="_blank">اضغط للإطلاع</a>
-            </div>
+        <h2>تعبئة بيانات الطلب</h2>
+        <form id="jobForm">
+            <label for="name">الاسم الكامل</label>
+            <input type="text" id="name" name="name" placeholder="اكتب اسمك هنا" required>
 
-            <div class="card">
-                <img src="imges/عقار.png" alt="شركة 2">
-                <h3>شركة التطوير العمراني</h3>
-                <p>خصم حتى 30%</p>
-                <div class="discount-box">BUILD30</div>
-                <a href="https://example.com" target="_blank">اضغط للإطلاع</a>
-            </div>
+            <label for="email">البريد الإلكتروني</label>
+            <input type="email" id="email" name="email" placeholder="example@mail.com" required>
 
-            <div class="card">
-                <img src="imges/المياه.png" alt="شركة 3">
-                <h3>شركة الخدمات العقارية</h3>
-                <p>خصم حتى 15%</p>
-                <div class="discount-box">HOME15</div>
-                <a href="https://example.com" target="_blank">اضغط للإطلاع</a>
-            </div>
-        </div>
+            <label for="phone">رقم الهاتف</label>
+            <input type="tel" id="phone" name="phone" placeholder="05xxxxxxxx">
+
+            <label for="city">المدينة</label>
+            <input type="text" id="city" name="city" placeholder="المدينة">
+
+            <label for="cv">ارفق السيرة الذاتية (اختياري)</label>
+            <input type="file" id="cv" name="cv">
+
+            <label for="message">رسالتك</label>
+            <textarea id="message" name="message" rows="4" placeholder="أضف رسالة قصيرة"></textarea>
+
+            <button type="submit">إرسال الطلب</button>
+        </form>
     </section>
 
     <!-- الفوتر -->
@@ -453,18 +420,24 @@
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSidebar(); });
         // navvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 
-        // أنيميشن ظهور الكروت (Zoom In + Fade)
-        const cards = document.querySelectorAll(".card");
+        // انيميشن ظهور الكارد
+        const jobCard = document.querySelector(".job-card");
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add("visible");
-                    observer.unobserve(entry.target);
+                    jobCard.classList.add("visible");
+                    observer.unobserve(jobCard);
                 }
             });
         }, { threshold: 0.2 });
+        observer.observe(jobCard);
 
-        cards.forEach(card => observer.observe(card));
+        // الفورم شكلي Placeholder
+        document.getElementById("jobForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            alert("✅ تم إرسال طلبك بنجاح (placeholder – اربطه بالباك اند لاحقًا)");
+            this.reset();
+        });
     </script>
 
 </body>
